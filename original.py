@@ -22,3 +22,6 @@ while True:
             response = 'Hello world\n'.encode()
             client_socket.send(response)
             print('Reply sent.')
+    
+    print('Outside inner while loop')
+    client_socket.close()
