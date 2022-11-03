@@ -12,6 +12,7 @@ to_write = {}
 
 
 def server():
+    
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # отключение тайм-айута подключения
     # server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -26,6 +27,7 @@ def server():
         tasks.append(client(client_socket))
 
 def client(client_socket):
+
     while True:
         yield ('read', client_socket)
         request = client_socket.recv(4096) # read
@@ -57,7 +59,7 @@ def event_loop():
             task = tasks.pop(0)
 
             reason, sock = next(task)
-            
+
             if reason == 'read':
                 to_read[sock] = task
             if reason == 'write':
